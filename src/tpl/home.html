@@ -1,0 +1,41 @@
+<div ng-controller="HomeCtrl">
+    <div class="col-sm-12">
+        <div>
+            <h2>Temp Design</h2>
+        </div>
+        <!--img id='aviary_feather' src='uploads/images/designes/thumbs/1433277862.png'/-->
+        <ul ui-jq = "sortable" class="list-group gutter list-group-lg list-group-sp" ng-repeat = 'mode in modes'>
+            <a ui-sref = 'app.designer({designId:canvasTempDesigns.id})' ng-if="canvasTempDesigns" ng-click="selectTempDesign(mode)" type='btn btn-primary' >
+                <img ng-src="{{canvasTempDesigns.imageThumb}}"/>
+            </a>
+            <div>
+                <h2>Designs</h2>
+                <p 
+                    ng-repeat="design in canvasDesigns"
+                    ng-if= "design.mode_id == mode.id"
+                    >
+                    <a ui-sref="app.designer({designId:design.id})">
+                    <img 
+                        id='design-{{design.id}}'
+                        ng-src="{{design.imageTumb}}"
+                        ng-click="selectDesign(design,mode)"/>
+                    </a>
+                </p>
+            </div>
+            <li><h3>{{mode.name}}</h3></li>
+            <li class="list-group-item bg-default" ng-repeat="preset in canvasPresets" ng-if="mode.id==preset.mode_id">
+                <span class="pull-right">
+                    <a href><i class="fa fa-pencil fa-fw m-r-xs"></i></a>
+                    <a href><i class="fa fa-plus fa-fw m-r-xs"></i></a>
+                    <a href><i class="fa fa-times fa-fw"></i></a>                  
+                </span>
+                <span class="pull-left"><i class="fa fa-sort text-muted fa m-r-sm"></i></span>
+                <div class="clear">
+                    <a class='btn btn-default' ng-click="choosePreset(preset.id,mode)">
+                        {{preset.title}}
+                    </a>
+                </div>
+            </li>
+        </ul>
+    </div>
+</div>

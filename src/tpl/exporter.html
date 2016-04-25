@@ -1,0 +1,18 @@
+<div ng-controller="ExporterCtrl">
+    <div class="col-sm-12">
+        <div class="btn-group dropdown" dropdown>
+            <button ng-click="saveCanvasObjects()">Only Objects</button>
+            <button ng-click="saveCanvasTemplates('c')">As Template</button>
+            <button ng-click="saveCanvasDesigns('new')" ng-if = "!designState.isDesign">As My New Design</button>
+            <button ng-click="saveCanvasDesigns('update')" ng-if = "designState.isDesign">Update My Design</button>
+            <button ng-click="saveCanvasDesigns('copy')" ng-if = "designState.isDesign">Save as copy My Design</button>
+        </div>
+
+        <div class="btn-group dropdown" dropdown>
+            <a href="{{canvasImageDataUrl}}" download = 'canvas.png'>As Image</a>
+            <a href="{{canvasPdfDataUrl}}" download = "canvas.pdf">As PDF</a>
+        </div>
+    </div>
+</div>
+<h3><i>Preview</i></h3>
+<img ng-src="{{canvas.toDataURL('image/png')}}"/>
